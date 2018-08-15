@@ -13,7 +13,7 @@ public:
 		ifstream fin; // 입력스트림 InputFileStream
 		fin.open(fname.c_str()); //c_str 은 표준문자열을 char* 로 바꾸어줌
 		if (fin.good()) {
-			cout << fname.c_str() << "을 읽고 있습니다." << endl;
+			cout << fname.c_str() << "을 통해 파일을 저장중입니다.	." << endl;
 		}
 		if (fin.fail()) {
 			cout << "파일 이름이 잘못되었습니다.";
@@ -23,30 +23,44 @@ public:
 		fin.close();
 	}
 	void write(const string& fname, bool append = true,
-		const char* chs = "hello.") {
+		const char* chs = "hello.") {	//string 상수 frame, bool 형 append, char* 상수 chs, default 값은 "hello."
 		ofstream fout;
 		if (append)
 		{
 			fout.open(fname.c_str(), ios_base::app);
 		}
-		else { fout.open(fname.c_str()); }
+		else { fout.open(fname.c_str()); }		// 이전 내용을 모두 지우고 새로 문자열을 저장한다.
 
-		if (fout.fail()) {
+		if (fout.fail()) {			//파일 출력에 실패시 리턴
 			cout << "파일 출력에 실패했습니다.";
 			return;
 		}
-		fout << chs << endl;
+		fout << chs << endl;		
 		fout.close();
 	}
 };
 	int main()
 	{
-		char chs[] = "void write(){";
+		char chs[] = "메모 내용";
 		FileRW* fr = new FileRW;
+		
+		char* filename = new char[50];
+		char* content = new char[5000];
+		string b;
+		char c = '32';  //space
 
+		cout << "파일명을 입력하세요, 최대 50자" << endl;
+		cin >> filename;
+
+		cout << "내용을 입력하세요, 최대 5000자" << endl;
+		cin >> content;
+		
+		
 		fr->read("연습.cpp");
-		fr->write("a.txt", true, chs);
+		fr->write(filename, true, content);
 		delete fr;
+		delete filename;
 		system("PAUSE");
 		return EXIT_SUCCESS;
 	}
+
