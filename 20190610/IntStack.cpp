@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <stdlib.h> 
+#include <string.h>
+
+typedef struct{
+	char name[10];
+	int height;
+	int weight;
+} Person;
+
+int npcmp(const Person *x, const Person *y)
+{
+	return strcmp(x->name, y->name);
+}
+
+int main(void)
+{
+	Person x[]
+	{
+		{"±è¿µÁØ", 179,79},
+		{"¹ÚÇö±¸", 179,79},
+		{"ÀÌ¼öÁø", 179,79},
+		{"±è”î½º", 179,79},
+		{"½Ç¾÷ÀÚ", 179,79},
+		{"°³±ØÇø", 179,79},
+		{"¤LÀº", 179,79},
+		{"±è¿µ", 179,79},
+	};
+	
+	int nx = sizeof(x)/sizeof(x[0]);
+	int retry; 
+}
